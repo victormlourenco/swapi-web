@@ -10,7 +10,10 @@ ADD . /go/src/github.com/victormlourenco/swapi-web
 # either manually or with a tool like "godep".)
 RUN go install github.com/victormlourenco/swapi-web
 
-# Run the outyet command by default when the container starts.
+# Set Workdir 
+WORKDIR /go/src/github.com/victormlourenco/swapi-web
+
+# Run the swapi-web command by default when the container starts.
 ENTRYPOINT /go/bin/swapi-web
 
 # Document that the service listens on port 8080.
