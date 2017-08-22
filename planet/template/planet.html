@@ -1,0 +1,8 @@
+<h2>{{.ID}}</h2>
+<h2>{{.Name}}</h2>
+<h2>{{.Climate}}</h2>
+<h2>{{.Terrain}}</h2>
+<h2>{{.Population}}</h2>
+{{ range $key, $value := .Films }}
+<h3>{{$value.Title}}</h3>
+{{end}}
