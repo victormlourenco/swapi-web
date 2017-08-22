@@ -2,8 +2,9 @@ package planet
 
 import (
 	"math/rand"
-	planetModel "swapi-web/planet/model"
 	"time"
+
+	planetModel "github.com/swapi-web/planet/model"
 )
 
 // PickPlanet : Picks a random planet from Swapi

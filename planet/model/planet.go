@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"swapi-web/config"
-	filmModel "swapi-web/film/model"
+
+	"github.com/swapi-web/config"
+
+	filmModel "github.com/swapi-web/film/model"
 )
 
 var client = &http.Client{}
