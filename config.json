@@ -1,4 +1,4 @@
 {
  "RemoteUrl": "https://swapi.co/api",
- "ServerAddress": "localhost:8085"
+ "ServerAddress": ":8080"
 }

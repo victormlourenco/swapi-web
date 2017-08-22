@@ -10,7 +10,7 @@ func init() {
 }
 
 func setDefaultValues() {
-	viper.SetDefault("ServerAddress", "localhost:8080")
+	viper.SetDefault("ServerAddress", ":8080")
 	viper.SetDefault("RemoteUrl", "https://swapi.co/api/")
 }
 
