@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/swapi-web/config"
-	planetCtrl "github.com/swapi-web/planet/controller"
+	"github.com/victormlourenco/swapi-web/config"
+	planetCtrl "github.com/victormlourenco/swapi-web/planet/controller"
 
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"

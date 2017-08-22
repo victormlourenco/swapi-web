@@ -3,7 +3,7 @@ package controller
 import (
 	"net/http"
 
-	planetApi "github.com/swapi-web/planet"
+	planetApi "github.com/victormlourenco/swapi-web/planet"
 
 	"github.com/gin-gonic/gin"
 	"github.com/unrolled/render"

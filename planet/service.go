@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	planetModel "github.com/swapi-web/planet/model"
+	planetModel "github.com/victormlourenco/swapi-web/planet/model"
 )
 
 // PickPlanet : Picks a random planet from Swapi

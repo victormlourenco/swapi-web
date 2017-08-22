@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/swapi-web/config"
+	"github.com/victormlourenco/swapi-web/config"
 
-	filmModel "github.com/swapi-web/film/model"
+	filmModel "github.com/victormlourenco/swapi-web/film/model"
 )
 
 var client = &http.Client{}
