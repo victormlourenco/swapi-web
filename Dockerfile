@@ -14,4 +14,4 @@ RUN go install github.com/victormlourenco/swapi-web
 ENTRYPOINT /go/bin/swapi-web
 
 # Document that the service listens on port 8080.
-EXPOSE 8080
+EXPOSE 6060
