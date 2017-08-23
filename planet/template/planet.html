@@ -65,14 +65,18 @@
                             </span>
                         </li>
                     </ul>
+                    {{ if.Films }}
                     <div class="films">
-                      {{ if.Films }}
                       <span class="mdl-chip mdl-chip--contact">
                         <i class="mdl-chip__contact material-icons mdl-color--orange mdl-color-text--white">movie</i></a>
-                        <span class="mdl-chip__text">Featured in {{.Films}} film(s).</span>
+                        {{if (eq .Films 1)}}
+                        <span class="mdl-chip__text">Featured in {{.Films}} film</span>
+                        {{else}}
+                        <span class="mdl-chip__text">Featured in {{.Films}} films</span>
+                        {{end}}
                       </span>
-                      {{end}}
                     </div>
+                    {{end}}
                 </div>
             </div>
         </main>

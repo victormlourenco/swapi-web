@@ -1,4 +1,4 @@
 {
  "RemoteUrl": "https://swapi.co/api",
- "ServerAddress": "0.0.0.0:6060"
+ "ServerAddress": "0.0.0.0:6061"
 }
