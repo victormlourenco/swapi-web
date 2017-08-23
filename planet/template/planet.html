@@ -36,7 +36,7 @@
 </head>
 
 <body>
-    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--black">
         <div class="demo-ribbon"></div>
         <main class="demo-main mdl-layout__content">
             <div class="demo-container mdl-grid">
@@ -46,34 +46,31 @@
                     <ul class="demo-list-three mdl-list">
                         <li class="mdl-list__item mdl-list__item--three-line">
                             <span class="mdl-list__item-primary-content">
-                              <i class="material-icons mdl-list__item-avatar">brightness_7</i>
-                              <span>Climate</span>
-                              <span class="mdl-list__item-text-body">{{.Climate}}</span>
-                             </span>
-                            <span class="mdl-list__item-secondary-content"></span>
-                        </li>
-                        <li class="mdl-list__item mdl-list__item--three-line">
-                            <span class="mdl-list__item-primary-content">
-                            <i class="material-icons  mdl-list__item-avatar">landscape</i>
-                            <span>Terrain</span>
-                            <span class="mdl-list__item-text-body">{{.Terrain}}</span>
-                            </span>
-                            <span class="mdl-list__item-secondary-content"></span>
-                        </li>
-                        <li class="mdl-list__item mdl-list__item--three-line">
-                            <span class="mdl-list__item-primary-content">
-                            <i class="material-icons  mdl-list__item-avatar">group</i>
-                            <span>Population</span>
+                                <i class="material-icons  mdl-list__item-avatar">group</i>
+                                <span>Population</span>
                                 <span class="mdl-list__item-text-body">{{.Population}}</span>
                             </span>
-                              <span class="mdl-list__item-secondary-content"></span>
+                        </li>                        
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-avatar">brightness_7</i>
+                                <span>Climate</span>
+                                <span class="mdl-list__item-text-body">{{.Climate}}</span>
+                             </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons  mdl-list__item-avatar">landscape</i>
+                                <span>Terrain</span>
+                                <span class="mdl-list__item-text-body">{{.Terrain}}</span>
+                            </span>
                         </li>
                     </ul>
                     <div class="films">
-                      {{ range $key, $value := .Films }}
+                      {{ if.Films }}
                       <span class="mdl-chip mdl-chip--contact">
-                        <i class="mdl-chip__contact material-icons mdl-color--teal mdl-color-text--white">movie</i></a>
-                        <span class="mdl-chip__text">{{$value.Title}}</span>
+                        <i class="mdl-chip__contact material-icons mdl-color--orange mdl-color-text--white">movie</i></a>
+                        <span class="mdl-chip__text">Featured in {{.Films}} film(s).</span>
                       </span>
                       {{end}}
                     </div>
@@ -81,7 +78,10 @@
             </div>
         </main>
     </div>
-    <a onClick="window.location.reload()" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Next</a>
+
+    <a onClick="window.location.reload()" id="view-source" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--orange">
+        <i class="material-icons">forward</i>
+    </a>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 

@@ -6,8 +6,6 @@ import (
 	"net/http"
 
 	"github.com/victormlourenco/swapi-web/config"
-
-	filmModel "github.com/victormlourenco/swapi-web/film/model"
 )
 
 var client = &http.Client{}
@@ -20,7 +18,7 @@ type Planet struct {
 	Terrain    string   `json:"terrain"`
 	Population string   `json:"population"`
 	FilmURLs   []string `json:"films"`
-	Films      []filmModel.Film
+	Films      int
 }
 
 // Planets : Group of planets
@@ -59,14 +57,7 @@ func (p *Planet) Get() error {
 		return err
 	}
 
-	for k := range p.FilmURLs {
-		film := filmModel.Film{URL: p.FilmURLs[k]}
-		err := film.Get()
-		if err != nil {
-			return err
-		}
-		p.Films = append(p.Films, film)
-	}
+	p.Films = len(p.FilmURLs)
 
 	return nil
 }
