@@ -1,6 +1,7 @@
 package planet
 
 import (
+	"errors"
 	"math/rand"
 	"time"
 
@@ -13,7 +14,11 @@ func PickPlanet() (planetModel.Planet, error) {
 	if err != nil {
 		return planetModel.Planet{}, err
 	}
-	planet := planetModel.Planet{ID: randInt64(1, totalPlanets)}
+	planetID, err := randInt64(1, totalPlanets)
+	if err != nil {
+		return planetModel.Planet{}, err
+	}
+	planet := planetModel.Planet{ID: planetID}
 	err = planet.Get()
 	if err != nil {
 		return planetModel.Planet{}, err
@@ -21,7 +26,10 @@ func PickPlanet() (planetModel.Planet, error) {
 	return planet, nil
 }
 
-func randInt64(min int64, max int64) int64 {
-	rand.Seed(time.Now().Unix())
-	return min + rand.Int63n(max-min)
+func randInt64(min int64, max int64) (int64, error) {
+	if (max - min) <= 0 {
+		return 0, errors.New("Invalid range")
+	}
+	rand.Seed(time.Now().UTC().UnixNano())
+	return min + rand.Int63n(max-min), nil
 }

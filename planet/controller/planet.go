@@ -13,9 +13,9 @@ var r *render.Render
 
 // Create : Create HTTP routes
 func Create(router *gin.RouterGroup) {
-	equipe := router.Group("")
+	planet := router.Group("")
 	{
-		equipe.GET("/", getPlanet)
+		planet.GET("/", getPlanet)
 	}
 
 	r = render.New(render.Options{
@@ -26,6 +26,9 @@ func Create(router *gin.RouterGroup) {
 }
 
 func getPlanet(c *gin.Context) {
-	planet, _ := planetApi.PickPlanet()
+	planet, err := planetApi.PickPlanet()
+	if err != nil {
+		r.HTML(c.Writer, http.StatusBadRequest, "planet", planet)
+	}
 	r.HTML(c.Writer, http.StatusOK, "planet", planet)
 }

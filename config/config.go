@@ -11,7 +11,7 @@ func init() {
 
 func setDefaultValues() {
 	viper.SetDefault("ServerAddress", "0.0.0.0:6060")
-	viper.SetDefault("RemoteUrl", "https://swapi.co/api/")
+	viper.SetDefault("RemoteUrl", "https://swapi.co/api")
 }
 
 func readFile() {
