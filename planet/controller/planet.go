@@ -29,6 +29,7 @@ func getPlanet(c *gin.Context) {
 	planet, err := planetApi.PickPlanet()
 	if err != nil {
 		r.HTML(c.Writer, http.StatusBadRequest, "planet", planet)
+		return
 	}
 	r.HTML(c.Writer, http.StatusOK, "planet", planet)
 }
