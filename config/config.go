@@ -10,14 +10,14 @@ func init() {
 }
 
 func setDefaultValues() {
+	viper.SetConfigName("config") // name of config file (without extension)
+	viper.AddConfigPath(".")      // path to look for the config file in
 	viper.SetDefault("ServerAddress", "0.0.0.0:6060")
 	viper.SetDefault("RemoteUrl", "https://swapi.co/api")
 }
 
-func readFile() {
-	viper.SetConfigName("config") // name of config file (without extension)
-	viper.AddConfigPath(".")      // path to look for the config file in
-	viper.ReadInConfig()          // Find and read the config file
+func readFile() error {
+	return viper.ReadInConfig() // Find and read the config file
 }
 
 // GetString : Return config value as string
