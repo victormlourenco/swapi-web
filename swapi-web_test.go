@@ -3,43 +3,38 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"net/http/httptest"
 	"testing"
-
-	"github.com/victormlourenco/swapi-web/config"
 )
 
 func TestHttpHandler(t *testing.T) {
-	go main()
+	ts := httptest.NewServer(getMainEngine())
+	defer ts.Close()
 
-	client := &http.Client{}
-
-	req, err := client.Get(fmt.Sprintf("http://%s/", config.GetString("ServerAddress")))
+	res, err := http.Get(ts.URL)
 	if err != nil {
 		t.Errorf("expected no error got %v", err)
 	}
-	defer req.Body.Close()
-
-	if req.StatusCode != 200 {
-		t.Fatalf("handler returned wrong status code: got %d want %d", req.StatusCode, http.StatusOK)
+	if res.StatusCode != 200 {
+		t.Fatalf("handler returned wrong status code: got %d want %d", res.StatusCode, http.StatusOK)
 	}
+	res.Body.Close()
 
-	req, err = client.Get(fmt.Sprintf("http://%s/assets/images/favicon.png", config.GetString("ServerAddress")))
+	res, err = http.Get(fmt.Sprintf("%s/assets/images/favicon.png", ts.URL))
 	if err != nil {
 		t.Errorf("expected no error got %v", err)
 	}
-	defer req.Body.Close()
-
-	if req.StatusCode != 200 {
-		t.Fatalf("handler returned wrong status code: got %d want %d", req.StatusCode, http.StatusOK)
+	if res.StatusCode != 200 {
+		t.Fatalf("handler returned wrong status code: got %d want %d", res.StatusCode, http.StatusOK)
 	}
+	res.Body.Close()
 
-	req, err = client.Get(fmt.Sprintf("http://%s/assets/css/styles.css", config.GetString("ServerAddress")))
+	res, err = http.Get(fmt.Sprintf("%s/assets/css/styles.css", ts.URL))
 	if err != nil {
 		t.Errorf("expected no error got %v", err)
 	}
-	defer req.Body.Close()
-
-	if req.StatusCode != 200 {
-		t.Fatalf("handler returned wrong status code: got %d want %d", req.StatusCode, http.StatusOK)
+	if res.StatusCode != 200 {
+		t.Fatalf("handler returned wrong status code: got %d want %d", res.StatusCode, http.StatusOK)
 	}
+	res.Body.Close()
 }
