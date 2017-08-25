@@ -34,4 +34,4 @@ $ docker run -d -p 6060:6060 swapi-web
 ```
 
 ## Demo
-http://138.197.196.80/
+http://67.205.139.57
