@@ -1,5 +1,5 @@
 hash: ff6c7870767df588e10baab08725b7d3d487e5046fc506f918510d43ccd02662
-updated: 2017-08-22T10:28:22.215112844-03:00
+updated: 2017-08-25T22:44:33.853191138-03:00
 imports:
 - name: github.com/fsnotify/fsnotify
   version: 4da3e2cfbabc9f751898f250b49f2439785783a1
@@ -39,6 +39,8 @@ imports:
   version: c37440a7cf42ac63b919c752ca73a85067e05992
 - name: github.com/pelletier/go-toml
   version: 5c26a6ff6fd178719e15decac1c8196da0d7d6d1
+- name: github.com/sirupsen/logrus
+  version: 89742aefa4b206dcf400792f3bd35b542998eb3b
 - name: github.com/spf13/afero
   version: 9be650865eab0c12963d8753212f4f9c66cdcf12
   subpackages:
@@ -57,6 +59,10 @@ imports:
   - codec
 - name: github.com/unrolled/render
   version: a0ec58421ddf111bd7efd3b7087399ca7d5da2f1
+- name: golang.org/x/crypto
+  version: 7e9105388ebff089b3f99f0ef676ea55a6da3a7e
+  subpackages:
+  - ssh/terminal
 - name: golang.org/x/sys
   version: dbc2be9168a660ef302e04b6ff6406de6f967473
   subpackages:

@@ -6,6 +6,7 @@ import (
 	planetApi "github.com/victormlourenco/swapi-web/planet"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 	"github.com/unrolled/render"
 )
 
@@ -28,6 +29,10 @@ func Create(router *gin.RouterGroup) {
 func getPlanet(c *gin.Context) {
 	planet, err := planetApi.PickPlanet()
 	if err != nil {
+		log.WithFields(log.Fields{
+			"Host":    c.Request.Host,
+			"Request": c.Request.RequestURI,
+		}).Error(err)
 		r.HTML(c.Writer, http.StatusBadRequest, "planet", planet)
 		return
 	}

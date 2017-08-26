@@ -5,6 +5,8 @@ import (
 	"math/rand"
 	"time"
 
+	log "github.com/sirupsen/logrus"
+
 	planetModel "github.com/victormlourenco/swapi-web/planet/model"
 )
 
@@ -28,7 +30,12 @@ func PickPlanet() (planetModel.Planet, error) {
 
 func randInt64(min int64, max int64) (int64, error) {
 	if (max - min) <= 0 {
-		return 0, errors.New("Invalid range")
+		err := errors.New("Invalid range")
+		log.WithFields(log.Fields{
+			"Min": min,
+			"Max": max,
+		}).Error(err)
+		return 0, err
 	}
 	rand.Seed(time.Now().UTC().UnixNano())
 	return min + rand.Int63n(max-min), nil

@@ -4,11 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/victormlourenco/swapi-web/config"
 )
 
-var client = &http.Client{}
+var client = &http.Client{
+	Timeout: time.Second * 10,
+}
 
 // Planet : Planet object
 type Planet struct {
@@ -34,10 +38,21 @@ func (p Planet) Count() (int64, error) {
 	}
 	defer req.Body.Close()
 
+	if req.StatusCode != http.StatusOK {
+		err := fmt.Errorf("The API server returned status code %d", req.StatusCode)
+		log.WithFields(log.Fields{
+			"RequestURL": req.Request.URL,
+		}).Error(err)
+		return 0, err
+	}
+
 	planets := Planets{}
 
 	err = json.NewDecoder(req.Body).Decode(&planets)
 	if err != nil {
+		log.WithFields(log.Fields{
+			"RequestURL": req.Request.URL,
+		}).Error(err)
 		return 0, err
 	}
 
@@ -52,8 +67,21 @@ func (p *Planet) Get() error {
 	}
 	defer req.Body.Close()
 
+	if req.StatusCode != http.StatusOK {
+		err := fmt.Errorf("The API server returned status code %d", req.StatusCode)
+		log.WithFields(log.Fields{
+			"RequestURL": req.Request.URL,
+			"PlanetID":   p.ID,
+		}).Error(err)
+		return err
+	}
+
 	err = json.NewDecoder(req.Body).Decode(&p)
 	if err != nil {
+		log.WithFields(log.Fields{
+			"RequestURL": req.Request.URL,
+			"PlanetID":   p.ID,
+		}).Error(err)
 		return err
 	}
 
